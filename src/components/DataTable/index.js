@@ -22,6 +22,12 @@ const DataTable = ({ columns, data, extraRowsDataFn }) => {
     {
       columns,
       data,
+      /**
+       * if no specific filter component is set in
+       * header, default filterer shows (You can specify not to show filter at in columns
+       * with prop: disableFilters ).
+       * Filters results by search input value
+       **/
       defaultColumn: { Filter: DefaultColumnFilter },
     },
     useFilters,
@@ -57,8 +63,6 @@ const DataTable = ({ columns, data, extraRowsDataFn }) => {
             key={`header_group_${headerGroupIndex}`}
           >
             {headerGroup.headers.map((column, headerIndex) => (
-              // Add the sorting props to control sorting. For this example
-              // we can add them into the header props
               <th key={`header_${headerIndex}_${headerGroupIndex}`}>
                 <div {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
