@@ -40,7 +40,7 @@ WrappedRequester.propTypes = {
 };
 WrappedRequester.defaultProps = {
   urls: [],
-  queryKey: "",
+  queryKey: "data",
   children: () => null,
   renderLoader: () => null,
 };
