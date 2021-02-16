@@ -51,12 +51,15 @@ const DataTable = ({ columns, data, extraRowsDataFn }) => {
   return (
     <S.Table {...getTableProps()}>
       <thead>
-        {headerGroups.map((headerGroup, index) => (
-          <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-            {headerGroup.headers.map((column) => (
+        {headerGroups.map((headerGroup, headerGroupIndex) => (
+          <tr
+            {...headerGroup.getHeaderGroupProps()}
+            key={`header_group_${headerGroupIndex}`}
+          >
+            {headerGroup.headers.map((column, headerIndex) => (
               // Add the sorting props to control sorting. For this example
               // we can add them into the header props
-              <th key={column.id}>
+              <th key={`header_${headerIndex}_${headerGroupIndex}`}>
                 <div {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render("Header")}
                   {generateSortingIndicator(column)}
@@ -68,13 +71,16 @@ const DataTable = ({ columns, data, extraRowsDataFn }) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, rowIndex) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()} key={row.id}>
-              {row.cells.map((cell) => {
+            <tr {...row.getRowProps()} key={`row_${rowIndex}`}>
+              {row.cells.map((cell, cellIndex) => {
                 return (
-                  <td {...cell.getCellProps()} key={cell.id}>
+                  <td
+                    {...cell.getCellProps()}
+                    key={`cell_${cellIndex}_${rowIndex}`}
+                  >
                     {cell.render("Cell")}
                   </td>
                 );
