@@ -60,8 +60,6 @@ function App() {
           />
         </S.FilmSelectWrapper>
 
-        <br />
-
         {filmState.title &&
         filmState.character_urls.length &&
         filmState.opening_crawl ? (
@@ -76,25 +74,23 @@ function App() {
               urls={filmState.character_urls}
               renderLoader={Loader}
             >
-              {(data) => {
-                return (
-                  <DataTable
-                    data={shapeDataForCharactersTableFunc(data)}
-                    columns={charactersTableColumns}
-                    extraRowsDataFn={(currentRowsData) => {
-                      const totalCm = getTotalCmFromRowsData(currentRowsData);
-                      return [
-                        [
-                          <div>Total Characters {currentRowsData.length}</div>,
-                          <div>
-                            Total Height: {generateTotalHeightString(totalCm)}
-                          </div>,
-                        ],
-                      ];
-                    }}
-                  />
-                );
-              }}
+              {(data) => (
+                <DataTable
+                  data={shapeDataForCharactersTableFunc(data)}
+                  columns={charactersTableColumns}
+                  extraRowsDataFn={(currentRowsData) => {
+                    const totalCm = getTotalCmFromRowsData(currentRowsData);
+                    return [
+                      [
+                        <div>Total Characters {currentRowsData.length}</div>,
+                        <div>
+                          Total Height: {generateTotalHeightString(totalCm)}
+                        </div>,
+                      ],
+                    ];
+                  }}
+                />
+              )}
             </WrappedRequester>
           </div>
         ) : (
@@ -124,7 +120,7 @@ S.FilmTitle = styled.div`
 `;
 
 S.FilmSelectWrapper = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: black;
 `;
 
