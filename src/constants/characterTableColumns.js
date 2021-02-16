@@ -10,7 +10,7 @@ const charactersTableColumns = [
     Header: "Gender",
     accessor: "gender",
     Filter: GenderColumnFilter,
-    filter: "equals", // by default, filter: 'text', but in our case we don't want to filter options like text, we want to find exact match of selected option.
+    filter: "equals",
     disableSortBy: true,
   },
   {
